@@ -8,17 +8,36 @@ const dates = [
 ];
 
 // TODO: Buatlah fungsi createDate
-const createDate = null;
+const createDate = (arrDates, index) => {
+
+  //start convert ke string dan assign ke array baru
+  const newDates = [];
+  for (let i = 0; i < arrDates.length; i++) {
+    const convertResult = (new Date(arrDates[i]).getTime() / 1000).toString();
+    newDates.push(convertResult);
+  };
+  //end convert ke string dan assign ke array baru
+
+  //start cek index yang di masukkan ke parameter
+  if (index === undefined) {          //jika index tidak dimasukkan
+    newDates.sort((x, y) => x - y);
+    return newDates.join("-");
+  } else {                            //jika index dimasukkan
+    newDates.sort((x, y) => x + y);
+    return newDates[index];
+  }
+  //end cek index yang di assign ke parameter
+};
 
 // ! JANGAN DIMODIFIKASI
 (() => {
   // IIFE
 
   // '1546387200-1580662800-1614841200-1617573600-1651802400' (dalam string)
-  console.log(createDate?.(dates));
+  console.log(createDate ?.(dates));
 
   // '1614841200' (dalam string)
-  console.log(createDate?.(dates, 2));
+  console.log(createDate ?.(dates, 2));
 })();
 
 module.exports = {
